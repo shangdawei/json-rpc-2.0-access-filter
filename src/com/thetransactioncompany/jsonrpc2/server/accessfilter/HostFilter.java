@@ -49,7 +49,7 @@ public class HostFilter implements AccessFilter {
 	
 	
 	/**
-	 * Initialises the host filter.
+	 * Initialises this host filter.
 	 *
 	 * @param whitelist Space-separated list of allowed host names and/or 
 	 *                  IPv4 / IPv6 addresses. All host names will be 

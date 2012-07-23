@@ -20,18 +20,29 @@ public class HTTPSFilter implements AccessFilter {
 	/**
 	 * Indicates whether HTTPS is required.
 	 */
-	private boolean httpsRequired;
+	private boolean requireHTTPS;
 	
 	
 	/**
-	 * Initialises the HTTPS filter.
+	 * Initialises this HTTPS filter.
 	 *
-	 * @param httpsRequired If {@code true} HTTPS access is required, else
-	 *                      {@code false}.
+	 * @param requireHTTPS If {@code true} HTTPS access is required, else
+	 *                     {@code false}.
 	 */
-	public void init(final boolean httpsRequired) {
+	public void init(final boolean requireHTTPS) {
 	
-		this.httpsRequired = httpsRequired;
+		this.requireHTTPS = requireHTTPS;
+	}
+	
+	
+	/**
+	 * Returns {@code true} if HTTPS is required.
+	 *
+	 * @return {@code true} if HTTPS is required, else {@code false}.
+	 */
+	public boolean requiresHTTPS() {
+	
+		return requireHTTPS;
 	}
 	
 
@@ -41,7 +52,7 @@ public class HTTPSFilter implements AccessFilter {
 	public AccessFilterResult filter(final JSONRPC2Request request, 
 	                                 final MessageContext messageCtx) {
 
-		if (! httpsRequired)
+		if (! requireHTTPS)
 			return AccessFilterResult.ACCESS_ALLOWED;
 		
 		if (messageCtx.isSecure())
