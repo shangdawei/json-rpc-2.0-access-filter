@@ -64,6 +64,7 @@
 		<junit showoutput="true">
 			<classpath refid="classpath.runtime"/>
 			<formatter type="plain"/>
+			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.AccessFilterResultTest"/>
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.HTTPSFilterTest"/>
 		</junit>
 	</target>
