@@ -31,6 +31,8 @@ public class X509ClientCertFilterTest extends TestCase {
 		DN expectedPrincipal = new DN("cn=admin,ou=people,dc=wondlerland,dc=net");
 		
 		filter.init(requireCert, expectedPrincipal);
+		assertTrue(filter.requiresCertificate());
+		assertEquals(new DN("cn=admin,ou=people,dc=wondlerland,dc=net"), filter.getCertificatePrincipal());
 		
 		JSONRPC2Request req = new JSONRPC2Request("users.list", 0);
 		
@@ -63,6 +65,8 @@ public class X509ClientCertFilterTest extends TestCase {
 		DN expectedPrincipal = null;
 		
 		filter.init(requireCert, expectedPrincipal);
+		assertTrue(filter.requiresCertificate());
+		assertNull(filter.getCertificatePrincipal());
 		
 		JSONRPC2Request req = new JSONRPC2Request("users.list", 0);
 		
@@ -88,6 +92,8 @@ public class X509ClientCertFilterTest extends TestCase {
 		DN expectedPrincipal = null;
 		
 		filter.init(requireCert, expectedPrincipal);
+		assertFalse(filter.requiresCertificate());
+		assertNull(filter.getCertificatePrincipal());
 		
 		JSONRPC2Request req = new JSONRPC2Request("users.list", 0);
 		

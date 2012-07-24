@@ -52,6 +52,31 @@ public class X509ClientCertFilter implements AccessFilter {
 		this.certPrincipal = certPrincipal;
 	}
 	
+	
+	/**
+	 * Returns {@code true} if this filter is configured to require X.509
+	 * client certificates.
+	 *
+	 * @return {@code true} if X.509 client certificates are required, else
+	 *         {@code false}.
+	 */
+	public boolean requiresCertificate() {
+	
+		return requireCert;
+	}
+	
+	
+	/**
+	 * Returns the configured X.509 certificate principal.
+	 *
+	 * @return The required X.509 certificate principal, {@code null} if
+	 *         none.
+	 */
+	public DN getCertificatePrincipal() {
+	
+		return certPrincipal;
+	}
+	
 	 
 	/**
 	 * @inheritDoc
