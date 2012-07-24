@@ -18,7 +18,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * optionally matching its subject / principal.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-23)
+ * @version $version$ (2012-07-24)
  */
 public class X509ClientCertFilter implements AccessFilter {
 
@@ -59,17 +59,21 @@ public class X509ClientCertFilter implements AccessFilter {
 	public AccessFilterResult filter(final JSONRPC2Request request, 
 	                                 final MessageContext messageCtx) {
 		
-		// Certs required at all?
+		// Cert not required -> always allow
 		if (! requireCert)
 			return AccessFilterResult.ACCESS_ALLOWED;
 		
-		// Cert required, but no particular principal DN?
-		if (requireCert && 
-		    certPrincipal == null && 
-		    messageCtx.getPrincipal() != null)
+		// Cert required but missing -> deny access
+		if (requireCert && messageCtx.getPrincipal() == null)
+			return new AccessFilterResult(AccessDeniedError.CLIENT_CERT_REQUIRED.toJSONRPC2Error());
+		
+		// Cert required and found, no particular principal DN required -> allow access
+		if (requireCert && certPrincipal == null && messageCtx.getPrincipal() != null)
 			return AccessFilterResult.ACCESS_ALLOWED;
 		
-		// Cert with specified principal required?
+		
+		// Cert with particular principal required
+		
 		if (requireCert && certPrincipal != null) {
 		
 			for (final Principal clientPrincipal: messageCtx.getPrincipals()) {
