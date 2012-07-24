@@ -18,9 +18,9 @@ public class HTTPSFilter implements AccessFilter {
 
 
 	/**
-	 * Indicates whether HTTPS is required.
+	 * Indicates whether HTTPS is required, default on.
 	 */
-	private boolean requireHTTPS;
+	private boolean requireHTTPS = true;
 	
 	
 	/**
