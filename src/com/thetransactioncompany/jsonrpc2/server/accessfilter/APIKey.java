@@ -1,6 +1,9 @@
 package com.thetransactioncompany.jsonrpc2.server.accessfilter;
 
 
+import java.util.UUID;
+
+
 /**
  * Immutable API key.
  *
@@ -14,6 +17,18 @@ public final class APIKey {
 	 * The API key value.
 	 */
 	private final String value;
+	
+	
+	/**
+	 * Creates a new unique API key based on a pseudo-randomly generated 
+	 * (type 4) UUID.
+	 *
+	 * <p>See {@code java.util.UUID}.
+	 */
+	public APIKey() {
+	
+		value = UUID.randomUUID().toString();
+	}
 	
 	
 	/**
