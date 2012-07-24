@@ -68,6 +68,7 @@
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.HTTPSFilterTest"/>
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.HostFilterTest"/>
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.X509ClientCertFilterTest"/>
+			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.APIKeyFilterTest"/>
 		</junit>
 	</target>
 	

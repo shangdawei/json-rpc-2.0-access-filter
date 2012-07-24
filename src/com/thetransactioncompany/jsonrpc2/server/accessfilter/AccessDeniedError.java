@@ -9,7 +9,7 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Error;
  * package.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-23)
+ * @version $version$ (2012-07-24)
  */
 public enum AccessDeniedError {
 
@@ -47,7 +47,13 @@ public enum AccessDeniedError {
 	/**
 	 * [-1005] Invalid API key.
 	 */
-	INVALID_API_KEY (-1005, "Invalid API key");
+	MISSING_API_KEY (-1005, "Missing API key"),
+	
+	
+	/**
+	 * [-1006] API key denied access.
+	 */
+	API_KEY_DENIED (-1006, "API key denied access");
 	
 	
 	/**
