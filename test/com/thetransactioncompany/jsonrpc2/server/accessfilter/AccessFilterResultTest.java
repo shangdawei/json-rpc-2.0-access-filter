@@ -36,4 +36,12 @@ public class AccessFilterResultTest extends TestCase {
 		assertEquals(AccessDeniedError.HTTPS_REQUIRED.toJSONRPC2Error().getCode(),
 		             result.getJSONRPC2Error().getCode());
 	}
+	
+	
+	public void testConstant() {
+	
+		assertTrue(AccessFilterResult.ACCESS_ALLOWED.accessAllowed());
+		assertFalse(AccessFilterResult.ACCESS_ALLOWED.accessDenied());
+		assertNull(AccessFilterResult.ACCESS_ALLOWED.getJSONRPC2Error());
+	}
 }

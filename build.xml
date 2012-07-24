@@ -66,6 +66,7 @@
 			<formatter type="plain"/>
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.AccessFilterResultTest"/>
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.HTTPSFilterTest"/>
+			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.HostFilterTest"/>
 		</junit>
 	</target>
 	
