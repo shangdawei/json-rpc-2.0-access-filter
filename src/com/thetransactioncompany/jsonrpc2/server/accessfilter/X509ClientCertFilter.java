@@ -14,6 +14,9 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
 /**
  * Access filter based on a X.509 client certificate presence and principal.
  *
+ * <p>Filters requests by checking if a X.509 certificate is present and 
+ * optionally matching its subject / principal.
+ *
  * @author Vladimir Dzhuvinov
  * @version $version$ (2012-07-23)
  */

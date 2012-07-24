@@ -12,7 +12,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
 /**
  * Access filter based on a static host name / IP address whitelist.
  *
- * Filters requests by taking an IP address and matching it against a list of
+ * <p>Filters requests by taking an IP address and matching it against a list of
  * allowed IP addresses or host names (that resolve to an IP address). Both IPv4
  * as well as IPv6 addresses are supported. To allow any host set the whitelist 
  * to "*" (asterisk).
