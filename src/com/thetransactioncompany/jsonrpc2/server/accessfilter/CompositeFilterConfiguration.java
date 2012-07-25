@@ -83,7 +83,7 @@ public class CompositeFilterConfiguration {
 		/**
 		 * If {@code true} clients are required to present a valid and 
 		 * trusted X.509 certificate with each HTTPS request. Applies if 
-		 * {@link #requireHTTPS} is set.
+		 * {@link #require require HTTPS} is set.
 		 *
 		 * <p>Property key: access.https.requireClientCert
 		 */

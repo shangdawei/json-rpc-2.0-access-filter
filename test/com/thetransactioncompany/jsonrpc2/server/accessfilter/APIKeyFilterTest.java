@@ -14,12 +14,12 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * Tests the API key filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-24)
+ * @version $version$ (2012-07-25)
  */
 public class APIKeyFilterTest extends TestCase {
 	
 	
-	private Map<APIKey,Set<String>> getAPIKeyMap() {
+	private static Map<APIKey,Set<String>> getAPIKeyMap() {
 	
 		Map<APIKey,Set<String>> map = new HashMap<APIKey,Set<String>>();
 		
@@ -42,11 +42,21 @@ public class APIKeyFilterTest extends TestCase {
 	}
 	
 	
+	private static Set<String> getExemptedMethods() {
+	
+		Set<String> methods = new HashSet<String>();
+		methods.add("ws.getName");
+		methods.add("ws.getVersion");
+		methods.add("ws.getTime");
+		return methods;
+	}
+	
+	
 	public void testAllow() {
 	
 		APIKeyFilter filter = new APIKeyFilter();
 		
-		filter.init(getAPIKeyMap());
+		filter.init(getAPIKeyMap(), getExemptedMethods());
 		
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("apiKey", "9cd19267");
@@ -63,7 +73,7 @@ public class APIKeyFilterTest extends TestCase {
 	
 		APIKeyFilter filter = new APIKeyFilter();
 		
-		filter.init(getAPIKeyMap());
+		filter.init(getAPIKeyMap(), getExemptedMethods());
 		
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("username", "alice");
@@ -82,7 +92,7 @@ public class APIKeyFilterTest extends TestCase {
 	
 		APIKeyFilter filter = new APIKeyFilter();
 		
-		filter.init(getAPIKeyMap());
+		filter.init(getAPIKeyMap(), getExemptedMethods());
 		
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("apiKey", "no-such-key");
