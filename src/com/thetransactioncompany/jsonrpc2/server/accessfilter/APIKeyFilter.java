@@ -19,7 +19,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * must be passed in a string parameter called "apiKey".
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-23)
+ * @version $version$ (2012-07-25)
  */
 public class APIKeyFilter implements AccessFilter {
 
@@ -31,17 +31,32 @@ public class APIKeyFilter implements AccessFilter {
 	
 	
 	/**
+	 * Exempted JSON-RPC 2.0 methods.
+	 */
+	private Set<String> exemptedMethods;
+	
+	
+	/**
 	 * Initialises this API key filter.
 	 *
-	 * @param keyStore The API key store with matching allowed JSON-RPC 2.0
-	 *                 methods names per API key. Must not be {@code null}.
+	 * @param keyStore        The API key store with matching allowed 
+	 *                        JSON-RPC 2.0 methods names per API key. Must 
+	 *                        not be {@code null}.
+	 * @param exemptedMethods Exempted JSON-RPC 2.0 methods for which an API
+	 *                        key is not required. Must not be {@code null}.
 	 */
-	public void init(final Map<APIKey,Set<String>> keyStore) {
+	public void init(final Map<APIKey,Set<String>> keyStore,
+	                 final Set<String> exemptedMethods) {
 	
 		if (keyStore == null)
 			throw new IllegalArgumentException("The API key store must not be null");
 		
 		this.keyStore = keyStore;
+		
+		if (exemptedMethods == null)
+			throw new IllegalArgumentException("The exempted methods must not be null");
+		
+		this.exemptedMethods = exemptedMethods;
 	}
 	
 	
@@ -62,6 +77,10 @@ public class APIKeyFilter implements AccessFilter {
 	public AccessFilterResult filter(final JSONRPC2Request request, 
 	                                 final MessageContext messageCtx) {
 
+		// Exempted method?
+		if (exemptedMethods.contains(request.getMethod()))
+			return AccessFilterResult.ACCESS_ALLOWED;
+		
 		// Only named params expected
 		if (! request.getParamsType().equals(JSONRPC2ParamsType.OBJECT))
 			return new AccessFilterResult(AccessDeniedError.MISSING_API_KEY.toJSONRPC2Error());
