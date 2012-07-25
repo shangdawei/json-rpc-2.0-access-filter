@@ -28,27 +28,31 @@ public class CompositeFilter implements AccessFilter {
 	/**
 	 * Initialises this composite filter with the specified configuration.
 	 *
-	 * @param config
+	 * @param config The composite filter configuration. Must not be 
+	 *               {@code null}.
 	 */
-	public void init() {
+	public void init(final CompositeFilterConfiguration config)
+		throws java.net.UnknownHostException {
 	
 		filterChain = new LinkedList<AccessFilter>();
 		
 		HTTPSFilter httpsFilter = new HTTPSFilter();
-		
+		httpsFilter.init(config.https.require);
 		filterChain.add(httpsFilter);
 		
 		HostFilter hostFilter = new HostFilter();
-		
+		hostFilter.init(config.hosts.allow);
 		filterChain.add(hostFilter);
 		
 		X509ClientCertFilter certFilter = new X509ClientCertFilter();
-		
+		certFilter.init(config.https.requireClientCert, config.https.clientCertPrincipal);
 		filterChain.add(certFilter);
 		
-		APIKeyFilter apiKeyFilter = new APIKeyFilter();
-		
-		filterChain.add(apiKeyFilter);
+		if (config.apiKeys.require) {
+			APIKeyFilter apiKeyFilter = new APIKeyFilter();
+			apiKeyFilter.init(config.apiKeys.map, config.apiKeys.exemptedMethods);
+			filterChain.add(apiKeyFilter);
+		}
 	}
 	
 	
