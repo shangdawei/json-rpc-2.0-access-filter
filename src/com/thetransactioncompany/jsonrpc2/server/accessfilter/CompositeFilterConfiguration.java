@@ -71,7 +71,7 @@ public class CompositeFilterConfiguration {
 		 *
 		 * <p>Property key: access.https.require
 		 */
-		private final boolean require;
+		public final boolean require;
 
 
 		/**

@@ -1,7 +1,7 @@
 <project name="JSON-RPC 2.0 Server Access Filter" default="dist" basedir=".">
 
-	<property name="version" value="0.1"/>
-	<property name="version-date" value="2012-07-23"/>
+	<property name="version" value="0.3"/>
+	<property name="version-date" value="2012-07-25"/>
 	<property name="jarfile" value="jsonrpc2-access-filter-${version}.jar"/>
 	
 	<path id="classpath.compile">
@@ -69,6 +69,7 @@
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.HostFilterTest"/>
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.X509ClientCertFilterTest"/>
 			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.APIKeyFilterTest"/>
+			<test name="com.thetransactioncompany.jsonrpc2.server.accessfilter.CompositeFilterConfigurationTest"/>
 		</junit>
 	</target>
 	
