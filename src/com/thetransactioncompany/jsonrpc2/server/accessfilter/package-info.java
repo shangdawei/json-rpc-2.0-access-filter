@@ -1,8 +1,7 @@
 /**
- * Access filters for JSON-RPC 2.0 requests, for use on the server-side before
- * request processing. Control access according to client host name / IP 
- * address, HTTPS transport, client X.509 certificate presence and / or API key
- * policy.
+ * Access filters for JSON-RPC 2.0 requests, for use on the server-side prior to
+ * request execution. Control access according to client host name / IP address,
+ * HTTPS transport, client X.509 certificate presence and / or API key policy.
  *
  * <p>JSON-RPC 2.0 services would typically plug in a 
  * {@link com.thetransactioncompany.jsonrpc2.server.accessfilter.CompositeFilter} 
