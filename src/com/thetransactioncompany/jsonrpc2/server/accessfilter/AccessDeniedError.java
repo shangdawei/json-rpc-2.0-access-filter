@@ -5,55 +5,64 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Error;
 
 
 /**
- * Enumeration of the access denied JSON-RPC 2.0 errors produced by this 
- * package.
+ * Enumeration of the access denied errors produced by the access filters in 
+ * this package and intended for return to the calling clients. Use the
+ * {@link #toJSONRPC2Error} method to convert to a JSON-RPC 2.0 error.
+ *
+ * <p>The error codes are in the range [-31100 .. -31199].
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-24)
+ * @version $version$ (2012-07-27)
  */
 public enum AccessDeniedError {
 
 
 	/**
-	 * [-1000] Requests must be sent over HTTPS.
+	 * [-31100] Requests must be sent over HTTPS.
 	 */
-	HTTPS_REQUIRED (-1000, "Requests must be sent over a secure channel (HTTPS)"),
+	HTTPS_REQUIRED (-31100, "Requests must be sent over a secure channel (HTTPS)"),
 	
 	
 	/**
-	 * [-1001] Client IP denied.
+	 * [-31105] Client IP denied.
 	 */
-	CLIENT_IP_DENIED (-1001, "Client IP address denied access"),
+	CLIENT_IP_DENIED (-31105, "Client IP address denied access"),
 	
 	
 	/**
-	 * [-1002] Client X.509 certificate required.
+	 * [-31110] Client X.509 certificate required.
 	 */
-	CLIENT_CERT_REQUIRED (-1002, "Trusted client X.509 certificate required"),
+	CLIENT_CERT_REQUIRED (-31110, "Trusted client X.509 certificate required"),
 	
 	
 	/**
-	 * [-1003] Client X.509 certificate principal denied.
+	 * [-31111] Invalid client X.509 certificate principal DN.
 	 */
-	CLIENT_PRINCIPAL_DENIED (-1003, "Client X.509 certificate principal denied"),
+	INVALID_CLIENT_PRINCIPAL_DN (-31111, "Invalid client X.509 certificate principal DN"),
 	
 	
 	/**
-	 * [-1004] Invalid client X.509 certificate principal DN.
+	 * [-31112] Client X.509 certificate principal denied.
 	 */
-	INVALID_CLIENT_PRINCIPAL_DN (-1004, "Invalid client X.509 certificate principal DN"),
+	CLIENT_PRINCIPAL_DENIED (-31112, "Client X.509 certificate principal denied"),
 	
 	
 	/**
-	 * [-1005] Invalid API key.
+	 * [-31120] API key filter requires named JSON-RPC 2.0 parameters.
 	 */
-	MISSING_API_KEY (-1005, "Missing API key"),
+	API_KEY_REQUIRES_NAMED_PARAM (-31120, "API key filter requires named JSON-RPC 2.0 parameters."),
 	
 	
 	/**
-	 * [-1006] API key denied access.
+	 * [-31121] Missing API key.
 	 */
-	API_KEY_DENIED (-1006, "API key denied access");
+	MISSING_API_KEY (-31121, "Missing API key"),
+	
+	
+	/**
+	 * [-31123] API key denied access.
+	 */
+	API_KEY_DENIED (-31123, "API key denied access");
 	
 	
 	/**
@@ -69,7 +78,7 @@ public enum AccessDeniedError {
 	
 	
 	/**
-	 * Creates a new enumerated access denied error.
+	 * Creates a new access denied error.
 	 *
 	 * @param code    The error code. Must not be {@code null}.
 	 * @param message The error message. Must not be {@code null}.

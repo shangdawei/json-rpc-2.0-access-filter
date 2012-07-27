@@ -1,14 +1,11 @@
 package com.thetransactioncompany.jsonrpc2.server.accessfilter;
 
 
-import com.thetransactioncompany.jsonrpc2.JSONRPC2Error;
-
-
 /**
  * Access filter result.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-23)
+ * @version $version$ (2012-07-27)
  */
 public class AccessFilterResult {
 
@@ -20,9 +17,9 @@ public class AccessFilterResult {
 	
 	
 	/**
-	 * The matching JSON-RPC 2.0 error if access is denied.
+	 * The matching access denied error message if access is denied.
 	 */
-	private JSONRPC2Error error;
+	private AccessDeniedError error;
 	
 	
 	/**
@@ -44,15 +41,15 @@ public class AccessFilterResult {
 	/**
 	 * Creates a new access filter result indicating access is denied.
 	 *
-	 * @param error The matching JSON-RPC 2.0 error. Must not be 
+	 * @param error The matching access denied error message. Must not be 
 	 *              {@code null}.
 	 */
-	public AccessFilterResult(final JSONRPC2Error error) {
+	public AccessFilterResult(final AccessDeniedError error) {
 	
 		accessAllowed = false;
 		
 		if (error == null)
-			throw new IllegalArgumentException("The JSON-RPC 2.0 error must not be null");
+			throw new IllegalArgumentException("The access denied error must not be null");
 		
 		this.error = error;
 	}
@@ -85,12 +82,12 @@ public class AccessFilterResult {
 	
 	
 	/**
-	 * Gets the matching JSON-RPC 2.0 error if access is denied.
+	 * Gets the matching access denied error if access is denied.
 	 *
-	 * @return The matching JSON-RPC 2.0 error if access is denied, else
+	 * @return The matching access denied error if access is denied, else
 	 *         {@code null}.
 	 */
-	public JSONRPC2Error getJSONRPC2Error() {
+	public AccessDeniedError getAccessDeniedError() {
 	
 		return error;
 	}

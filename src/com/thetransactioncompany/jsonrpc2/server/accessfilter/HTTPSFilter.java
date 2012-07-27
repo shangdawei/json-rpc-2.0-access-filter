@@ -7,9 +7,9 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
 
 
 /**
- * Access filter based on a secure HTTP (HTTPS) message transport presence.
- * If HTTPS access is required, the {@code MessageContext.isSecure()} method is
- * checked.
+ * Access filter ensuring requests are passed over HTTPS. The transport security
+ * of the JSON-RPC 2.0 request is checked by means of the 
+ * {@code MessageContext.isSecure()} method.
  *
  * @author Vladimir Dzhuvinov
  * @version $version$ (2012-07-23)
@@ -36,7 +36,8 @@ public class HTTPSFilter implements AccessFilter {
 	
 	
 	/**
-	 * Returns {@code true} if HTTPS is required.
+	 * Returns {@code true} if the filter is configured to require HTTPS
+	 * transport of the request.
 	 *
 	 * @return {@code true} if HTTPS is required, else {@code false}.
 	 */
@@ -58,6 +59,6 @@ public class HTTPSFilter implements AccessFilter {
 		if (messageCtx.isSecure())
 			return AccessFilterResult.ACCESS_ALLOWED;
 		else
-			return new AccessFilterResult(AccessDeniedError.HTTPS_REQUIRED.toJSONRPC2Error());
+			return new AccessFilterResult(AccessDeniedError.HTTPS_REQUIRED);
 	}
 }

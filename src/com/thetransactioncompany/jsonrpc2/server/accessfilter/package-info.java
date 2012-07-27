@@ -1,6 +1,12 @@
 /**
- * Filters JSON-RPC 2.0 requests on the server-side according to client IP
- * whitelist, client X.509 certificate or API token access policy.
+ * Access filters for JSON-RPC 2.0 requests, for use on the server-side before
+ * request processing. Control access according to client host name / IP 
+ * address, HTTPS transport, client X.509 certificate presence and / or API key
+ * policy.
+ *
+ * <p>JSON-RPC 2.0 services would typically plug in a 
+ * {@link com.thetransactioncompany.jsonrpc2.server.accessfilter.CompositeFilter} 
+ * instance.
  *
  * <p>Package dependencies:
  *
@@ -11,6 +17,7 @@
  *     <li>JSON Smart, version 1.1.1 or compatible.
  *     <li>UnboundID LDAP SDK, version 2.3 or compatible.
  *     <li>Log4j, version 1.2 or compatible.
+ *     <li>Servlet API, version 2.5 or higher.
  * </ul>
  *
  * @author Vladimir Dzhuvinov

@@ -20,7 +20,7 @@ import com.thetransactioncompany.util.PropertyParseException;
 
 
 /**
- * Immutable composite access filter configuration.
+ * Immutable configuration of a {@link CompositeFilter composite access filter}.
  *
  * <p>Example configuration properties, prefixed by "access." and grouped into
  * domains:
@@ -40,7 +40,7 @@ import com.thetransactioncompany.util.PropertyParseException;
  * </pre>
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-25)
+ * @version $version$ (2012-07-27)
  */
 public class CompositeFilterConfiguration {
 
@@ -49,12 +49,6 @@ public class CompositeFilterConfiguration {
 	 * The default properties prefix.
 	 */
 	public static final String DEFAULT_PREFIX = "access.";
-	
-	
-	/**
-	 * The logger.
-	 */
-	private static final Logger log = Logger.getLogger(CompositeFilterConfiguration.class);
 	
 	
 	/**
@@ -182,7 +176,7 @@ public class CompositeFilterConfiguration {
 	
 		
 		/**
-		 * Space separated list of client IP addresses and / or 
+		 * String of space separated client IP addresses and / or 
 		 * hostnames that are allowed access. If set to "*" (asterisk) 
 		 * any IP address is allowed.
 		 *
@@ -228,9 +222,6 @@ public class CompositeFilterConfiguration {
 		 */
 		private void log() {
 			
-			if (! log.isInfoEnabled())
-				return;
-			
 			log.info("Allowed hosts: " + allow);
 		}
 	}
@@ -260,17 +251,17 @@ public class CompositeFilterConfiguration {
 		
 		
 		/**
-		 * Exempted methods.
+		 * Exempted JSON-RPC 2.0 methods for which an API key is not
+		 * required.
 		 *
 		 * <p>Property key: access.apiKeys.exemptedMethods
 		 */
 		public final Set<String> exemptedMethods;
-		
 
 
 		/**
-		 * Map of API keys with their matching allowed JSON-RPC 2.0 method
-		 * names.
+		 * Map of API keys to the JSON-RPC 2.0 methods they are allowed
+		 * access to.
 		 */
 		public final Map<APIKey,Set<String>> map;
 		
@@ -391,9 +382,6 @@ public class CompositeFilterConfiguration {
 		 */
 		private void log() {
 			
-			if (! log.isInfoEnabled())
-				return;
-			
 			log.info("API key access required: " + require);
 		}
 	}
@@ -454,9 +442,6 @@ public class CompositeFilterConfiguration {
 	 * Logs the configuration details at INFO level.
 	 */
 	public void log() {
-	
-		if (! log.isInfoEnabled())
-			return;
 		
 		https.log();
 		hosts.log();

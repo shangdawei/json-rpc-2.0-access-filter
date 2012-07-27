@@ -10,12 +10,13 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
 
 
 /**
- * Access filter based on a static host name / IP address whitelist.
+ * Access filter ensuring JSON-RPC 2.0 requests originate from selected host 
+ * names / IP addresses.
  *
- * <p>Filters requests by taking an IP address and matching it against a list of
- * allowed IP addresses or host names (that resolve to an IP address). Both IPv4
- * as well as IPv6 addresses are supported. To allow any host set the whitelist 
- * to "*" (asterisk).
+ * <p>Requests are filtered by taking the client IP address and matching it 
+ * against a list of allowed IP addresses or host names (that resolve to an IP 
+ * address). Both IPv4 as well as IPv6 addresses are supported. To allow any 
+ * host set the whitelist to "*" (asterisk).
  *
  * <p>Important: To speed up checking all host names in the supplied whitelist 
  * are resolved during initialisation. This means that if the IP address for a 
@@ -24,20 +25,20 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * reinitialise the host filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-23)
+ * @version $version$ (2012-07-27)
  */
 public class HostFilter implements AccessFilter {
 
 
 	/**
-	 * The original space-separated list of allowed IPv4/IPv6 addresses 
+	 * The original space-separated string of allowed IPv4/IPv6 addresses 
 	 * and/or host names.
 	 */
 	private String allow;
 	
 	
 	/**
-	 * Space-separated list of allowed IPv4 or IPv6 addresses.
+	 * Space-separated string of allowed IPv4 or IPv6 addresses.
 	 */
 	private String allowedIPs;
 	
@@ -51,15 +52,15 @@ public class HostFilter implements AccessFilter {
 	/**
 	 * Initialises this host filter.
 	 *
-	 * @param whitelist Space-separated list of allowed host names and/or 
+	 * @param whitelist Space-separated string of allowed host names and/or 
 	 *                  IPv4 / IPv6 addresses. All host names will be 
 	 *                  resolved to their corresponding IP addresses. If set
-	 *                  to "*" (asterisk) all IP addresses will be allowed.
+	 *                  to "*" (asterisk) any IP address will be allowed.
 	 *                  Must not be {@code null}.
 	 *
 	 * @throws UnknownHostException If the allow list contains a badly 
 	 *                              formatted IP address or if a host name
-	 *                              could not be resolved.
+	 *                              could not be resolved to an IP address.
 	 */
 	public void init(final String whitelist)
 		throws UnknownHostException {
@@ -145,12 +146,12 @@ public class HostFilter implements AccessFilter {
 			if (allowAny)
 				return AccessFilterResult.ACCESS_ALLOWED;
 			else
-				return new AccessFilterResult(AccessDeniedError.CLIENT_IP_DENIED.toJSONRPC2Error());
+				return new AccessFilterResult(AccessDeniedError.CLIENT_IP_DENIED);
 		}
 		
 		if (isAllowedIP(ip))
 			return AccessFilterResult.ACCESS_ALLOWED;
 		else
-			return new AccessFilterResult(AccessDeniedError.CLIENT_IP_DENIED.toJSONRPC2Error());
+			return new AccessFilterResult(AccessDeniedError.CLIENT_IP_DENIED);
 	}
 }

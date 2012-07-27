@@ -12,20 +12,20 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
 
 
 /**
- * Access filter based on a X.509 client certificate presence and principal.
+ * Access filter ensuring HTTPS requests carry an X.509 client certificate with
+ * optional specified principal (subject DN).
  *
- * <p>Filters requests by checking if a X.509 certificate is present and 
- * optionally matching its subject / principal.
+ * <p>This filter complements {@link HTTPSFilter}.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-24)
+ * @version $version$ (2012-07-27)
  */
 public class X509ClientCertFilter implements AccessFilter {
 
 
 	/**
-	 * Indicates whether a X.509 client certificate must be presented for an
-	 * incoming request.
+	 * Indicates whether a X.509 client certificate must be presented for
+	 * incoming JSON-RPC 2.0 requests.
 	 */
 	private boolean requireCert;
 	
@@ -67,7 +67,7 @@ public class X509ClientCertFilter implements AccessFilter {
 	
 	
 	/**
-	 * Returns the configured X.509 certificate principal.
+	 * Returns the configured required X.509 certificate principal.
 	 *
 	 * @return The required X.509 certificate principal, {@code null} if
 	 *         none.
@@ -90,7 +90,7 @@ public class X509ClientCertFilter implements AccessFilter {
 		
 		// Cert required but missing -> deny access
 		if (requireCert && messageCtx.getPrincipal() == null)
-			return new AccessFilterResult(AccessDeniedError.CLIENT_CERT_REQUIRED.toJSONRPC2Error());
+			return new AccessFilterResult(AccessDeniedError.CLIENT_CERT_REQUIRED);
 		
 		// Cert required and found, no particular principal DN required -> allow access
 		if (requireCert && certPrincipal == null && messageCtx.getPrincipal() != null)
@@ -118,7 +118,7 @@ public class X509ClientCertFilter implements AccessFilter {
 				
 				} catch (LDAPException e) {
 			
-					return new AccessFilterResult(AccessDeniedError.INVALID_CLIENT_PRINCIPAL_DN.toJSONRPC2Error());
+					return new AccessFilterResult(AccessDeniedError.INVALID_CLIENT_PRINCIPAL_DN);
 				}
 				
 				if (dn.equals(certPrincipal))
@@ -126,6 +126,6 @@ public class X509ClientCertFilter implements AccessFilter {
 			}
 		}
 		
-		return new AccessFilterResult(AccessDeniedError.CLIENT_PRINCIPAL_DENIED.toJSONRPC2Error());
+		return new AccessFilterResult(AccessDeniedError.CLIENT_PRINCIPAL_DENIED);
 	}
 }
