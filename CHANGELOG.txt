@@ -1,0 +1,9 @@
+CHANGE LOG
+
+Access filter for JSON-RPC 2.0 requests
+
+Copyright (c) Vladimir Dzhuvinov, 2012
+
+
+version 1.0 (2012-07-27)
+	* First stable release.
