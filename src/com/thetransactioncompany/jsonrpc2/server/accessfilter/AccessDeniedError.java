@@ -12,7 +12,7 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Error;
  * <p>The error codes are in the range [-31100 .. -31199].
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-27)
+ * @version $version$ (2012-07-30)
  */
 public enum AccessDeniedError {
 
@@ -20,7 +20,7 @@ public enum AccessDeniedError {
 	/**
 	 * [-31100] Requests must be sent over HTTPS.
 	 */
-	HTTPS_REQUIRED (-31100, "Requests must be sent over a secure channel (HTTPS)"),
+	HTTPS_REQUIRED (-31100, "Requests must be sent over HTTPS"),
 	
 	
 	/**
