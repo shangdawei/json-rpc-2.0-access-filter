@@ -5,5 +5,5 @@ Access Filter for JSON-RPC 2.0 Requests
 Copyright (c) Vladimir Dzhuvinov, 2012
 
 
-version 1.0 (2012-07-27)
+version 1.0 (2012-07-30)
 	* First stable release.
