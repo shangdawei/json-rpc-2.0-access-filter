@@ -12,15 +12,13 @@ import com.unboundid.ldap.sdk.DN;
  * Tests the composite filter configuration class.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-25)
+ * @version $version$ (2012-07-30)
  */
 public class CompositeFilterConfigurationTest extends TestCase {
 
 
-
-	public void testRun()
-		throws Exception {
-
+	public static Properties getConfigProperties() {
+	
 		Properties props = new Properties();
 		props.setProperty("access.https.require", "true");
 		props.setProperty("access.https.requireClientCert", "true");
@@ -33,6 +31,15 @@ public class CompositeFilterConfigurationTest extends TestCase {
 		props.setProperty("access.apiKeys.map.f70defbe-b881-41f8-8138-bea52b6e1b9c", "sso.login sso.logout sso.getSession");
 		props.setProperty("access.apiKeys.map.08d1e641-b1c1-4d88-8796-e47c06430efb", "sso.proxiedLogin sso.proxiedLogout sso.getSession");
 		props.setProperty("access.apiKeys.map.d881afe0-4d7d-4520-9fda-bffffc3022ba", "sso.userCount sso.sessionCount sso.listUsers");
+	
+		return props;
+	}
+
+
+	public void testRun()
+		throws Exception {
+
+		Properties props = getConfigProperties();
 
 		CompositeFilterConfiguration config = new CompositeFilterConfiguration(props);
 		
