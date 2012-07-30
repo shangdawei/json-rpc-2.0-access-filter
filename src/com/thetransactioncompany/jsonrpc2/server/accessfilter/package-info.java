@@ -5,7 +5,9 @@
  *
  * <p>JSON-RPC 2.0 services would typically plug in a 
  * {@link com.thetransactioncompany.jsonrpc2.server.accessfilter.CompositeFilter} 
- * instance.
+ * instance. Alternatively, a custom
+ * {@link com.thetransactioncompany.jsonrpc2.server.accessfilter.AccessFilterChain} 
+ * may be devised.
  *
  * <p>Package dependencies:
  *
