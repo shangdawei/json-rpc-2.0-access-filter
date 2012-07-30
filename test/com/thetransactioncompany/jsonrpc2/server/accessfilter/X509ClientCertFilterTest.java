@@ -17,7 +17,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * Tests the X.509 client cert filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-24)
+ * @version $version$ (2012-07-30)
  */
 public class X509ClientCertFilterTest extends TestCase {
 	
@@ -45,15 +45,15 @@ public class X509ClientCertFilterTest extends TestCase {
 		ctx = new MessageContext(null, "192.168.0.1", true, (String)null);
 		result = filter.filter(req, ctx);
 		assertTrue(result.accessDenied());
-		assertEquals(AccessDeniedError.CLIENT_CERT_REQUIRED.toJSONRPC2Error().getCode(),
-		             result.getJSONRPC2Error().getCode());
+		assertEquals(AccessDeniedError.CLIENT_CERT_REQUIRED,
+		             result.getAccessDeniedError());
 		
 		// Cert present, incorrect principal
 		ctx = new MessageContext(null, "192.168.0.1", true, "cn=bob,ou=people,dc=wondlerland,dc=net");
 		result = filter.filter(req, ctx);
 		assertTrue(result.accessDenied());
-		assertEquals(AccessDeniedError.CLIENT_PRINCIPAL_DENIED.toJSONRPC2Error().getCode(),
-		             result.getJSONRPC2Error().getCode());
+		assertEquals(AccessDeniedError.CLIENT_PRINCIPAL_DENIED,
+		             result.getAccessDeniedError());
 	}
 	
 	
@@ -79,8 +79,8 @@ public class X509ClientCertFilterTest extends TestCase {
 		ctx = new MessageContext(null, "192.168.0.1", true, (String)null);
 		result = filter.filter(req, ctx);
 		assertTrue(result.accessDenied());
-		assertEquals(AccessDeniedError.CLIENT_CERT_REQUIRED.toJSONRPC2Error().getCode(),
-		             result.getJSONRPC2Error().getCode());
+		assertEquals(AccessDeniedError.CLIENT_CERT_REQUIRED,
+		             result.getAccessDeniedError());
 	}
 	
 	

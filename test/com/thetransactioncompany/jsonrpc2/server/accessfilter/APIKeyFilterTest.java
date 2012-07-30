@@ -14,7 +14,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * Tests the API key filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-25)
+ * @version $version$ (2012-07-30)
  */
 public class APIKeyFilterTest extends TestCase {
 	
@@ -84,7 +84,7 @@ public class APIKeyFilterTest extends TestCase {
 		
 		assertTrue(result.accessDenied());
 		assertEquals(AccessDeniedError.MISSING_API_KEY.toJSONRPC2Error().getCode(),
-		             result.getJSONRPC2Error().getCode());
+		             result.getAccessDeniedError().toJSONRPC2Error().getCode());
 	}
 	
 	
@@ -103,6 +103,22 @@ public class APIKeyFilterTest extends TestCase {
 		
 		assertTrue(result.accessDenied());
 		assertEquals(AccessDeniedError.API_KEY_DENIED.toJSONRPC2Error().getCode(),
-		             result.getJSONRPC2Error().getCode());
+		             result.getAccessDeniedError().toJSONRPC2Error().getCode());
+	}
+	
+	
+	public void testAllowExemptedMethod() {
+	
+		APIKeyFilter filter = new APIKeyFilter();
+		
+		filter.init(getAPIKeyMap(), getExemptedMethods());
+		
+		Map<String,Object> params = new HashMap<String,Object>();
+		JSONRPC2Request req = new JSONRPC2Request("ws.getTime", params, 0);
+		MessageContext ctx = new MessageContext();
+		
+		AccessFilterResult result = filter.filter(req, ctx);
+		
+		assertTrue(result.accessAllowed());
 	}
 }

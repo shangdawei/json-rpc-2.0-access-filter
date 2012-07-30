@@ -12,7 +12,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * Tests the HTTPS filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-24)
+ * @version $version$ (2012-07-30)
  */
 public class HTTPSFilterTest extends TestCase {
 	
@@ -52,8 +52,8 @@ public class HTTPSFilterTest extends TestCase {
 		AccessFilterResult result = filter.filter(req, ctx);
 		
 		assertTrue("Access denied test", result.accessDenied());
-		assertNotNull("JSON-RPC 2.0 error not null test", result.getJSONRPC2Error());
-		assertEquals("JSON-RPC 2.0 error code test", AccessDeniedError.HTTPS_REQUIRED.code, result.getJSONRPC2Error().getCode());
+		assertNotNull("JSON-RPC 2.0 error not null test", result.getAccessDeniedError());
+		assertEquals("JSON-RPC 2.0 error code test", AccessDeniedError.HTTPS_REQUIRED, result.getAccessDeniedError());
 	}
 	
 	

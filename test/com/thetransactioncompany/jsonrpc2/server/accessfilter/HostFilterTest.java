@@ -14,7 +14,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * Tests the host name / IP address filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-24)
+ * @version $version$ (2012-07-30)
  */
 public class HostFilterTest extends TestCase {
 	
@@ -53,7 +53,7 @@ public class HostFilterTest extends TestCase {
 		
 		result = filter.filter(req, ctx);
 		assertTrue(result.accessDenied());
-		assertEquals(AccessDeniedError.CLIENT_IP_DENIED.toJSONRPC2Error().getCode(),
-		             result.getJSONRPC2Error().getCode());
+		assertEquals(AccessDeniedError.CLIENT_IP_DENIED,
+		             result.getAccessDeniedError());
 	}
 }

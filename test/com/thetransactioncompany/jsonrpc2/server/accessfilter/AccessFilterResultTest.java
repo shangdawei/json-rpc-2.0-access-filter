@@ -8,7 +8,7 @@ import junit.framework.TestCase;
  * Tests the access filter result class.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-24)
+ * @version $version$ (2012-07-30)
  */
 public class AccessFilterResultTest extends TestCase {
 
@@ -25,16 +25,16 @@ public class AccessFilterResultTest extends TestCase {
 	public void testAccessDenied() {
 	
 		AccessFilterResult result = 
-			new AccessFilterResult(AccessDeniedError.HTTPS_REQUIRED.toJSONRPC2Error());
+			new AccessFilterResult(AccessDeniedError.HTTPS_REQUIRED);
 		
 	
 		assertTrue(result.accessDenied());
 		assertFalse(result.accessAllowed());
 		
-		assertNotNull(result.getJSONRPC2Error());
+		assertNotNull(result.getAccessDeniedError());
 		
-		assertEquals(AccessDeniedError.HTTPS_REQUIRED.toJSONRPC2Error().getCode(),
-		             result.getJSONRPC2Error().getCode());
+		assertEquals(AccessDeniedError.HTTPS_REQUIRED,
+		             result.getAccessDeniedError());
 	}
 	
 	
@@ -42,6 +42,6 @@ public class AccessFilterResultTest extends TestCase {
 	
 		assertTrue(AccessFilterResult.ACCESS_ALLOWED.accessAllowed());
 		assertFalse(AccessFilterResult.ACCESS_ALLOWED.accessDenied());
-		assertNull(AccessFilterResult.ACCESS_ALLOWED.getJSONRPC2Error());
+		assertNull(AccessFilterResult.ACCESS_ALLOWED.getAccessDeniedError());
 	}
 }
