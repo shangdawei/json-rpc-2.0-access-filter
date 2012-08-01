@@ -10,13 +10,14 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
 
 
 /**
- * Access filter chain. Executes the filters in the order of they were added. 
- * All chained filters must allow access for the filtered JSON-RPC 2.0 request
- * to pass. If a single filter denies access the chain immediately returns an 
+ * Access filter chain. Executes the filters in the order they were added. All
+ * chained filters must allow access for the filtered JSON-RPC 2.0 request to 
+ * pass. If a single filter denies access the chain immediately returns an 
  * access denied.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-30)
+ * @author Todor Arnaudov
+ * @version $version$ (2012-08-01)
  */
 public class AccessFilterChain implements AccessFilter {
 
@@ -68,9 +69,9 @@ public class AccessFilterChain implements AccessFilter {
 	public AccessFilterResult filter(final JSONRPC2Request request, 
 	                                 final MessageContext messageCtx) {
 					 
-		for (AccessFilter filter: filterChain) {
+		for (AccessFilter f: filterChain) {
 		
-			AccessFilterResult result = filter.filter(request, messageCtx);
+			AccessFilterResult result = f.filter(request, messageCtx);
 			
 			if (result.accessDenied())
 				return result;
