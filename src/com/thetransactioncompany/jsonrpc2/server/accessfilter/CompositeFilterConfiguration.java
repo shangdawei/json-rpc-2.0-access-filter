@@ -33,6 +33,7 @@ import com.thetransactioncompany.util.PropertyParseException;
  * access.hosts.allow=*
  * 
  * access.apiKeys.require=true
+ * access.apiKeys.parameterName=apiKey
  * access.apiKeys.exemptedMethods=ws.getName ws.getVersion ws.getTime
  * access.apiKeys.map.f70defbe-b881-41f8-8138-bea52b6e1b9c=sso.login sso.logout sso.getSession
  * access.apiKeys.map.08d1e641-b1c1-4d88-8796-e47c06430efb=sso.proxiedLogin sso.proxiedLogout sso.getSession
@@ -40,7 +41,7 @@ import com.thetransactioncompany.util.PropertyParseException;
  * </pre>
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-27)
+ * @version $version$ (2012-08-07)
  */
 public class CompositeFilterConfiguration {
 
@@ -251,6 +252,15 @@ public class CompositeFilterConfiguration {
 		
 		
 		/**
+		 * The name of the JSON-RPC 2.0 parameter used to pass the API
+		 * key.
+		 *
+		 * <p>Property key: access.apiKeys.parameterName
+		 */
+		public final String parameterName;
+		
+		
+		/**
 		 * Exempted JSON-RPC 2.0 methods for which an API key is not
 		 * required.
 		 *
@@ -365,6 +375,9 @@ public class CompositeFilterConfiguration {
 			
 			require = pr.getOptBoolean(prefix + "apiKeys.require", DEFAULT_REQUIRE);
 			
+			parameterName = pr.getOptString(prefix + "apiKeys.parameterName", 
+			                                APIKeyFilter.DEFAULT_API_KEY_PARAMETER_NAME);
+			
 			if (require) {
 			
 				exemptedMethods = parseExemptedMethods(prefix, props);
@@ -383,6 +396,21 @@ public class CompositeFilterConfiguration {
 		private void log() {
 			
 			log.info("API key access required: " + require);
+			
+			if (! require)
+				return;
+			
+			log.info("API key parameter name: " + parameterName);
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append("API key exempted JSON-RPC 2.0 methods: ");
+			
+			for (String method: exemptedMethods) {
+				sb.append(method);
+				sb.append(' ');
+			}
+			
+			log.info(sb.toString());
 		}
 	}
 	

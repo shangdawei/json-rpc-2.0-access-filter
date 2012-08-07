@@ -14,7 +14,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * Tests the composite filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-30)
+ * @version $version$ (2012-08-07)
  */
 public class CompositeFilterTest extends TestCase {
 
@@ -22,7 +22,7 @@ public class CompositeFilterTest extends TestCase {
 	public void testInit()
 		throws Exception {
 
-		Properties props = CompositeFilterConfigurationTest.getConfigProperties();
+		Properties props = CompositeFilterConfigurationTest.getAllConfigPropertiesSet();
 		
 		CompositeFilter filter = new CompositeFilter();
 		
@@ -42,7 +42,7 @@ public class CompositeFilterTest extends TestCase {
 							 "cn=John Doe,ou=people,cd=company,dc=org");
 		
 		CompositeFilter filter = new CompositeFilter();
-		filter.init(new CompositeFilterConfiguration(CompositeFilterConfigurationTest.getConfigProperties()));
+		filter.init(new CompositeFilterConfiguration(CompositeFilterConfigurationTest.getAllConfigPropertiesSet()));
 	
 		AccessFilterResult result = filter.filter(req, mctx);
 		
@@ -61,7 +61,7 @@ public class CompositeFilterTest extends TestCase {
 							 "cn=John Doe,ou=people,cd=company,dc=org");
 		
 		CompositeFilter filter = new CompositeFilter();
-		filter.init(new CompositeFilterConfiguration(CompositeFilterConfigurationTest.getConfigProperties()));
+		filter.init(new CompositeFilterConfiguration(CompositeFilterConfigurationTest.getAllConfigPropertiesSet()));
 	
 		AccessFilterResult result = filter.filter(req, mctx);
 		

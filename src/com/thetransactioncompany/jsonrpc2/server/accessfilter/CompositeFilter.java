@@ -25,7 +25,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * </ol>
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-30)
+ * @version $version$ (2012-08-07)
  */
 public class CompositeFilter extends AccessFilterChain {
 
@@ -67,14 +67,17 @@ public class CompositeFilter extends AccessFilterChain {
 			if (config.https.requireClientCert) {
 		
 				X509ClientCertFilter certFilter = new X509ClientCertFilter();
-				certFilter.init(config.https.requireClientCert, config.https.clientCertPrincipal);
+				certFilter.init(config.https.requireClientCert, 
+				                config.https.clientCertPrincipal);
 				add(certFilter);
 			}
 		}
 		
 		if (config.apiKeys.require) {
 			APIKeyFilter apiKeyFilter = new APIKeyFilter();
-			apiKeyFilter.init(config.apiKeys.map, config.apiKeys.exemptedMethods);
+			apiKeyFilter.init(config.apiKeys.map, 
+			                  config.apiKeys.exemptedMethods,
+					  config.apiKeys.parameterName);
 			add(apiKeyFilter);
 		}
 	}

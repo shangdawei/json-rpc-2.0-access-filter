@@ -17,11 +17,11 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * request methods.
  *
  * <p>The filtered JSON-RPC 2.0 request must have named parameters and the API
- * key must be passed in a designated {@link #DEFAULT_API_KEY_PARAMETER string 
- * parameter}.
+ * key must be passed in a designated {@link #DEFAULT_API_KEY_PARAMETER_NAME 
+ * string parameter}.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-30)
+ * @version $version$ (2012-08-07)
  */
 public class APIKeyFilter implements AccessFilter {
 
@@ -48,13 +48,13 @@ public class APIKeyFilter implements AccessFilter {
 	 * The default name of the JSON-RPC 2.0 parameter used to pass the API
 	 * key.
 	 */
-	public static final String DEFAULT_API_KEY_PARAMETER = "apiKey";
+	public static final String DEFAULT_API_KEY_PARAMETER_NAME = "apiKey";
 	
 	
 	/**
 	 * Initialises this API key filter. The name of the JSON-RPC 2.0 
 	 * parameter used to pass the API key is set to 
-	 * {@link #DEFAULT_API_KEY_PARAMETER}.
+	 * {@link #DEFAULT_API_KEY_PARAMETER_NAME}.
 	 *
 	 * @param keyMap          Map of API keys to their allowed JSON-RPC 2.0
 	 *                        methods. Must not be {@code null}.
@@ -64,7 +64,7 @@ public class APIKeyFilter implements AccessFilter {
 	public void init(final Map<APIKey,Set<String>> keyMap,
 	                 final Set<String> exemptedMethods) {
 			 
-		init(keyMap, exemptedMethods, DEFAULT_API_KEY_PARAMETER);
+		init(keyMap, exemptedMethods, DEFAULT_API_KEY_PARAMETER_NAME);
 	}
 	
 	
