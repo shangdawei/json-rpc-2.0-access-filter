@@ -12,7 +12,7 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Error;
  * <p>The error codes are in the range [-31100 .. -31199].
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-30)
+ * @version $version$ (2012-08-08)
  */
 public enum AccessDeniedError {
 
@@ -50,7 +50,7 @@ public enum AccessDeniedError {
 	/**
 	 * [-31120] API key filter requires named JSON-RPC 2.0 parameters.
 	 */
-	API_KEY_REQUIRES_NAMED_PARAM (-31120, "API key filter requires named JSON-RPC 2.0 parameters."),
+	API_KEY_REQUIRES_NAMED_PARAM (-31120, "API key filter requires named JSON-RPC 2.0 parameters"),
 	
 	
 	/**
