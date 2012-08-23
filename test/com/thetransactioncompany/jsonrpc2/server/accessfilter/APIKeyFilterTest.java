@@ -14,7 +14,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * Tests the API key filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-30)
+ * @version $version$ (2012-08-23)
  */
 public class APIKeyFilterTest extends TestCase {
 	
@@ -38,6 +38,11 @@ public class APIKeyFilterTest extends TestCase {
 		methods.add("sso.getSession");
 		map.put(new APIKey("b9f89662"), methods);
 		
+		// Key three - allow any method
+		methods = new HashSet<String>();
+		methods.add("*");
+		map.put(new APIKey("7cf1beda"), methods);
+		
 		return map;
 	}
 	
@@ -60,6 +65,23 @@ public class APIKeyFilterTest extends TestCase {
 		
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("apiKey", "9cd19267");
+		JSONRPC2Request req = new JSONRPC2Request("sso.login", params, 0);
+		MessageContext ctx = new MessageContext();
+		
+		AccessFilterResult result = filter.filter(req, ctx);
+		
+		assertTrue(result.accessAllowed());
+	}
+	
+	
+	public void testAllowAny() {
+	
+		APIKeyFilter filter = new APIKeyFilter();
+		
+		filter.init(getAPIKeyMap(), getExemptedMethods());
+		
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("apiKey", "7cf1beda");
 		JSONRPC2Request req = new JSONRPC2Request("sso.login", params, 0);
 		MessageContext ctx = new MessageContext();
 		

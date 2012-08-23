@@ -14,14 +14,15 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
 
 /**
  * Access filter ensuring clients present an API key for protected JSON-RPC 2.0
- * request methods.
+ * request methods. An API key may be given access to zero, more or any 
+ * (indicated by asterisk) methods.
  *
  * <p>The filtered JSON-RPC 2.0 request must have named parameters and the API
  * key must be passed in a designated {@link #DEFAULT_API_KEY_PARAMETER_NAME 
  * string parameter}.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-08-07)
+ * @version $version$ (2012-08-22)
  */
 public class APIKeyFilter implements AccessFilter {
 
@@ -57,7 +58,9 @@ public class APIKeyFilter implements AccessFilter {
 	 * {@link #DEFAULT_API_KEY_PARAMETER_NAME}.
 	 *
 	 * @param keyMap          Map of API keys to their allowed JSON-RPC 2.0
-	 *                        methods. Must not be {@code null}.
+	 *                        methods. If a method name is set to "*" 
+	 *                        (asterisk) then any method is allowed for the
+	 *                        API key. Must not be {@code null}.
 	 * @param exemptedMethods Exempted JSON-RPC 2.0 methods for which an API
 	 *                        key is not required. Must not be {@code null}.
 	 */
@@ -72,7 +75,9 @@ public class APIKeyFilter implements AccessFilter {
 	 * Initialises this API key filter.
 	 *
 	 * @param keyMap          Map of API keys to their allowed JSON-RPC 2.0
-	 *                        methods. Must not be {@code null}.
+	 *                        methods. If a method name is set to "*" 
+	 *                        (asterisk) then any method is allowed for the
+	 *                        API key. Must not be {@code null}.
 	 * @param exemptedMethods Exempted JSON-RPC 2.0 methods for which an API
 	 *                        key is not required. Must not be {@code null}.
 	 * @param apiKeyParamName The name of the JSON-RPC 2.0 parameter used to
@@ -168,6 +173,10 @@ public class APIKeyFilter implements AccessFilter {
 		
 		if (allowedMethods == null)
 			return new AccessFilterResult(AccessDeniedError.API_KEY_DENIED);
+		
+		// Any method allowed?
+		if (allowedMethods.contains("*"))
+			return AccessFilterResult.ACCESS_ALLOWED;
 		
 		if (! allowedMethods.contains(request.getMethod()))
 			return new AccessFilterResult(AccessDeniedError.API_KEY_DENIED);

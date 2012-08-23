@@ -1,7 +1,7 @@
 <project name="JSON-RPC 2.0 Server Access Filter" default="dist" basedir=".">
 
-	<property name="version" value="1.2"/>
-	<property name="version-date" value="2012-08-07"/>
+	<property name="version" value="1.3"/>
+	<property name="version-date" value="2012-08-23"/>
 	<property name="jarfile" value="jsonrpc2-access-filter-${version}.jar"/>
 	
 	<path id="classpath.compile">
