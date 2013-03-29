@@ -22,7 +22,7 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * string parameter}.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-08-22)
+ * @version $version$ (2013-03-29)
  */
 public class APIKeyFilter implements AccessFilter {
 
@@ -151,7 +151,7 @@ public class APIKeyFilter implements AccessFilter {
 			return AccessFilterResult.ACCESS_ALLOWED;
 		
 		// Only named params expected
-		if (request.getParamsType().equals(JSONRPC2ParamsType.ARRAY))
+		if (! request.getParamsType().equals(JSONRPC2ParamsType.OBJECT))
 			return new AccessFilterResult(AccessDeniedError.API_KEY_REQUIRES_NAMED_PARAM);
 
 		
