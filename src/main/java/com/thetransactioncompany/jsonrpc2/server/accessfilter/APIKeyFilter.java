@@ -22,7 +22,6 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * string parameter}.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2013-03-29)
  */
 public class APIKeyFilter implements AccessFilter {
 

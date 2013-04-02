@@ -25,7 +25,6 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * </ol>
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-08-07)
  */
 public class CompositeFilter extends AccessFilterChain {
 

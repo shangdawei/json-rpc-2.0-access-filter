@@ -20,30 +20,7 @@ Package requirements:
 
 	* Java 1.6 or later.
 	
-	* The package dependencies listed in the JavaDocs or included the lib/
-	  directory.
-
-
-Package content:
-
-	README.txt                           This file.
-	
-	LICENSE.txt                          The software license.
-	
-	CHANGELOG.txt                        The change log.
-	
-	jsonrpc2-access-filter-{version}.jar JAR file containing the compiled 
-	                                     package classes.
-	
-	javadoc/                             The Java Docs for this package.
-	
-	pom.xml                              The Maven build file.
-	
-	lib/                                 The package dependencies.
-	
-	src/                                 The full source code for this 
-	                                     package.
-
+	* The package dependencies listed in the pom.xml.
 
 
 For Java client, server and shell libraries implementing JSON-RPC 2.0 visit

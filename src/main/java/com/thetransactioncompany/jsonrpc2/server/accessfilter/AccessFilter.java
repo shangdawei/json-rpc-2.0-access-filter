@@ -10,7 +10,6 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * Access filter interface.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-23)
  */
 public interface AccessFilter {
 

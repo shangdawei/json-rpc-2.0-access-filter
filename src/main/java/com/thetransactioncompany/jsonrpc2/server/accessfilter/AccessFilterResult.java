@@ -5,7 +5,6 @@ package com.thetransactioncompany.jsonrpc2.server.accessfilter;
  * Access filter result.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-27)
  */
 public class AccessFilterResult {
 

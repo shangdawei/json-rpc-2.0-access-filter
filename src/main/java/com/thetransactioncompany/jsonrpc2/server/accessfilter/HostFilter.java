@@ -25,7 +25,6 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * reinitialise the host filter.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-27)
  */
 public class HostFilter implements AccessFilter {
 

@@ -18,7 +18,6 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * <p>This filter complements {@link HTTPSFilter}.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-27)
  */
 public class X509ClientCertFilter implements AccessFilter {
 

@@ -8,7 +8,6 @@ import java.util.UUID;
  * Immutable API key.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-24)
  */
 public final class APIKey {
 

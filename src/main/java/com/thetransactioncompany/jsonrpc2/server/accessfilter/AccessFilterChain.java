@@ -17,7 +17,6 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  *
  * @author Vladimir Dzhuvinov
  * @author Todor Arnaudov
- * @version $version$ (2012-08-01)
  */
 public class AccessFilterChain implements AccessFilter {
 

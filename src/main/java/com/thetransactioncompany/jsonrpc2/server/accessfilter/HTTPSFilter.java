@@ -12,7 +12,6 @@ import com.thetransactioncompany.jsonrpc2.server.MessageContext;
  * {@code MessageContext.isSecure()} method.
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-07-23)
  */
 public class HTTPSFilter implements AccessFilter {
 

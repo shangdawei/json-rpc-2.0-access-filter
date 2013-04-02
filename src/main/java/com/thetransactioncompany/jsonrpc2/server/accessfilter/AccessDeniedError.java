@@ -12,7 +12,6 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Error;
  * <p>The error codes are in the range [-31100 .. -31199].
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-08-08)
  */
 public enum AccessDeniedError {
 

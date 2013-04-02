@@ -41,7 +41,6 @@ import com.thetransactioncompany.util.PropertyParseException;
  * </pre>
  *
  * @author Vladimir Dzhuvinov
- * @version $version$ (2012-08-07)
  */
 public class CompositeFilterConfiguration {
 
