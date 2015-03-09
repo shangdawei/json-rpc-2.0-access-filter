@@ -1,6 +1,6 @@
 Access Filter for JSON-RPC 2.0 Requests
 
-Copyright (c) Vladimir Dzhuvinov, 2012 - 2013
+Copyright (c) Vladimir Dzhuvinov, 2012 - 2015
 
 
 README

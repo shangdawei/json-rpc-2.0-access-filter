@@ -29,3 +29,11 @@ version 1.4.1 (2013-03-30)
 
 version 1.4.2 (2013-04-02)
 	* Publishes to Maven Central.
+
+version 1.5 (2015-03-09)
+    * Upgrades to Servlet API 3.0.
+	* Upgrades to JSON-RPC 2.0 Base 1.35.
+	* Upgrades to JSON-RPC 2.0 Server 1.10.1.
+	* Upgrades to UnboundID LDAP SDK 2.3.8.
+	* Upgrades to Property Utils 1.9.1.
+	* Upgrades to Log4j 2.1.
