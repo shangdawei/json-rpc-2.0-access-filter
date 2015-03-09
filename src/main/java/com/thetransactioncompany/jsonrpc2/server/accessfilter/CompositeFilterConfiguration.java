@@ -10,7 +10,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.unboundid.ldap.sdk.DN;
 import com.unboundid.ldap.sdk.LDAPException;
@@ -49,6 +50,12 @@ public class CompositeFilterConfiguration {
 	 * The default properties prefix.
 	 */
 	public static final String DEFAULT_PREFIX = "access.";
+
+
+	/**
+	 * The logger.
+	 */
+	private static final Logger log = LogManager.getLogger("MAIN");
 	
 	
 	/**
@@ -97,12 +104,6 @@ public class CompositeFilterConfiguration {
 		 * <p>Property key: access.https.clientCertPrincipal
 		 */
 		public final DN clientCertPrincipal;
-		
-		
-		/**
-        	 * The logger.
-        	 */
-        	private final Logger log = Logger.getLogger(HTTPS.class);
 		
 		
 		/**
@@ -192,12 +193,6 @@ public class CompositeFilterConfiguration {
 		
 		
 		/**
-        	 * The logger.
-        	 */
-        	private final Logger log = Logger.getLogger(Hosts.class);
-		
-		
-		/**
 		 * Creates a new client hosts access configuration from the 
 		 * specified properties.
 		 *
@@ -273,12 +268,6 @@ public class CompositeFilterConfiguration {
 		 * access to.
 		 */
 		public final Map<APIKey,Set<String>> map;
-		
-		
-		/**
-        	 * The logger.
-        	 */
-        	private final Logger log = Logger.getLogger(APIKeys.class);
 		
 		
 		/**

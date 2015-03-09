@@ -2,7 +2,7 @@ CHANGE LOG
 
 Access Filter for JSON-RPC 2.0 Requests
 
-Copyright (c) Vladimir Dzhuvinov, 2012 - 2013
+Copyright (c) Vladimir Dzhuvinov, 2012 - 2015
 
 
 version 1.0 (2012-07-30)
