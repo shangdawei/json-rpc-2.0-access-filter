@@ -11,7 +11,7 @@
 	
 	<groupId>com.thetransactioncompany</groupId>
 	<artifactId>jsonrpc2-access-filter</artifactId>
-	<version>1.5.1</version>
+	<version>1.5.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
 	<name>JSON-RPC 2.0 Access Filter</name>
@@ -40,7 +40,7 @@
 		<connection>scm:git:https://bitbucket.org/thetransactioncompany/json-rpc-2.0-access-filter.git</connection>
 		<developerConnection>scm:git:git@bitbucket.org:thetransactioncompany/json-rpc-2.0-access-filter.git</developerConnection>
 		<url>https://bitbucket.org/thetransactioncompany/json-rpc-2.0-access-filter</url>
-	  	<tag>1.5.1</tag>
+	  	<tag>HEAD</tag>
 	</scm>
     
 	<developers>
