@@ -37,3 +37,6 @@ version 1.5 (2015-03-09)
 	* Upgrades to UnboundID LDAP SDK 2.3.8.
 	* Upgrades to Property Utils 1.9.1.
 	* Upgrades to Log4j 2.1.
+
+version 1.5.1 (2015-03-16)
+    * Upgrades to JSON Smart 1.3.1.
